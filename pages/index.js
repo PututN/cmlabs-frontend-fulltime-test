@@ -7,12 +7,19 @@ import ListIngredients from "@/src/components/ListIngredients";
 
 export default function Home() {
   const [getIngredients, setGetIngredients] = React.useState([]);
-  const onChange = (e) => {
-    setGetIngredients(
-      getIngredients.filter((el) =>
-        el.strIngredient.toLowerCase().includes(e.toLowerCase())
-      )
+  const onChange = async (e) => {
+    const { data } = await axios.get(
+      "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
     );
+    if (e) {
+      setGetIngredients(
+        data.meals.filter((el) =>
+          el.strIngredient.toLowerCase().includes(e.toLowerCase())
+        )
+      );
+    } else {
+      setGetIngredients(data.meals);
+    }
   };
   const fetchData = async () => {
     try {
@@ -24,10 +31,10 @@ export default function Home() {
       console.log(error);
     }
   };
+  //when first opened
   React.useEffect(() => {
     fetchData();
-    console.log("cek");
-  }, [getIngredients]);
+  }, []);
 
   return (
     <>

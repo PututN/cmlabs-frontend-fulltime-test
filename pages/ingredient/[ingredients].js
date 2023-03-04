@@ -6,7 +6,6 @@ import { Home, ChevronRight } from "react-feather";
 import Link from "next/link";
 import axios from "axios";
 import SearchComponent from "@/src/components/SearchComponent";
-import Image from "next/image";
 import ListMeals from "@/src/components/ListMeals";
 
 function Ingredients() {
@@ -25,16 +24,23 @@ function Ingredients() {
       console.log(error);
     }
   };
-  const onChange = (e) => {
-    setGetIngredients(
-      getIngredients.filter((el) =>
-        el.strMeal.toLowerCase().includes(e.toLowerCase())
-      )
+  const onChange = async (e) => {
+    const { data } = await axios.get(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredients}`
     );
+    if (e) {
+      setGetIngredients(
+        data.meals.filter((el) =>
+          el.strMeal.toLowerCase().includes(e.toLowerCase())
+        )
+      );
+    } else {
+      setGetIngredients(data.meals);
+    }
   };
   React.useEffect(() => {
     fetchData();
-  }, [ingredients, getIngredients]);
+  }, [ingredients]);
 
   return (
     <>
@@ -70,7 +76,7 @@ function Ingredients() {
           <div className=" gap-4 grid grid-cols-2 max-[375px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {getIngredients.map((item) => (
               <div key={item.idMeal}>
-                <ListMeals item={item} />;
+                <ListMeals item={item} />
               </div>
             ))}
           </div>
