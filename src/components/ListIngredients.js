@@ -7,7 +7,7 @@ function ListIngredients({ item }) {
     <Link
       href={`/ingredient/${item.strIngredient}`}
       key={item.idIngredient}
-      className="bg-white p-2 flex items-center rounded-lg gap-3 "
+      className="bg-white p-2 flex items-center rounded-lg gap-3 h-16"
     >
       <List />
       <div>{item.strIngredient}</div>
