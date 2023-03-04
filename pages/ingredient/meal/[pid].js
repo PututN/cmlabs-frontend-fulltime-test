@@ -10,7 +10,7 @@ import ImageMeal from "@/src/components/ImageMeal";
 import InstructionMeal from "@/src/components/InstructionMeal";
 import EmbededYt from "@/src/components/EmbededYt";
 
-function pid() {
+function Pid() {
   const router = useRouter();
   const { pid } = router.query;
   const [meal, setMeal] = React.useState(null);
@@ -281,4 +281,4 @@ function pid() {
   );
 }
 
-export default pid;
+export default Pid;

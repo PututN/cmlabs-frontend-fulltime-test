@@ -68,9 +68,11 @@ function Ingredients() {
         </div>
         {getIngredients ? (
           <div className=" gap-4 grid grid-cols-2 max-[375px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-            {getIngredients.map((item) => {
-              return <ListMeals item={item} />;
-            })}
+            {getIngredients.map((item) => (
+              <div key={item.idMeal}>
+                <ListMeals item={item} />;
+              </div>
+            ))}
           </div>
         ) : (
           <div className=" gap-4 grid grid-cols-2 max-[375px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">

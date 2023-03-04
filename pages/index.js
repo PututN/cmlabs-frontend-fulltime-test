@@ -42,14 +42,14 @@ export default function Home() {
           <div className="text-center font-bold text-2xl">
             See All The Delicious Foods
           </div>
-          <SearchComponent
-            onChange={onChange}
-          />
+          <SearchComponent onChange={onChange} />
         </div>
         <div className=" gap-4 grid grid-cols-2 max-[375px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-          {getIngredients.map((item) => {
-            return <ListIngredients item={item} />;
-          })}
+          {getIngredients.map((item) => (
+            <div key={item.idIngredient}>
+              <ListIngredients item={item} />
+            </div>
+          ))}
         </div>
       </div>
     </>
